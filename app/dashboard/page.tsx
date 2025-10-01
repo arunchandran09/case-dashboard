@@ -43,6 +43,13 @@ interface FilteredCase {
   next: string;
 }
 
+const stageOptions = [
+  { value: "any", label: "Any" },
+  { value: "pending", label: "Pending" },
+  { value: "arguments", label: "Arguments" },
+  { value: "orders", label: "Orders" },
+];
+
 export default function CaseManagementDashboard() {
   const [caseDetails, setCaseDetails] = useState<CaseDetails | null>(null);
   const [caseHistory, setCaseHistory] = useState<CaseHistory[]>([]);
@@ -151,10 +158,11 @@ export default function CaseManagementDashboard() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup label="Stages">
-                      <SelectItem value="any">Any</SelectItem>
-                      <SelectItem value="pending">Pending</SelectItem>
-                      <SelectItem value="arguments">Arguments</SelectItem>
-                      <SelectItem value="orders">Orders</SelectItem>
+                      {stageOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
                     </SelectGroup>
                   </SelectContent>
                 </Select>
