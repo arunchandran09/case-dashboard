@@ -56,7 +56,7 @@ const CaseHistoryPage = () => {
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       <h1 className="text-3xl font-extrabold text-gray-800 mb-6">Case History</h1>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto relative z-0">
         <Table className="w-full border border-gray-300 shadow-md rounded-lg">
           <TableHeader className="bg-gray-100">
             <TableRow>

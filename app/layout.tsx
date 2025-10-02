@@ -30,37 +30,24 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex h-screen">
-          {/* Sidebar */}
-          <aside className="w-64 bg-gray-800 text-white flex flex-col">
-            <div className="p-4 text-lg font-bold">Case Dashboard</div>
-            <nav className="flex-1">
-              <ul className="space-y-2 p-4">
-                <li>
-                  <Link href="/dashboard" className="block p-2 hover:bg-gray-700">
-                    Dashboard
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/cases" className="block p-2 hover:bg-gray-700">
-                    Cases
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/case-history" className="block p-2 hover:bg-gray-700">
-                    Case History
-                  </Link>
-                </li>
-              </ul>
+        <div className="flex flex-col h-screen">
+          {/* Common Page Header */}
+          <header className="bg-white shadow p-4 flex justify-between items-center">
+            <nav className="flex space-x-4">
+              <Link href="/dashboard" className="hover:underline">
+                Dashboard
+              </Link>
+              <Link href="/cases" className="hover:underline">
+                Cases
+              </Link>
+              <Link href="/case-history" className="hover:underline">
+                Case History
+              </Link>
             </nav>
-          </aside>
+          </header>
 
           {/* Main Content Area */}
           <div className="flex-1 flex flex-col">
-            {/* Top Navigation Bar */}
-            <header className="bg-white shadow p-4 flex justify-between items-center">
-            </header>
-
             {/* Main Content */}
             <main className="p-4 flex-1 overflow-y-auto">{children}</main>
           </div>
