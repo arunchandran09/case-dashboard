@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import { Gavel, Search, Clock, Landmark, CalendarDays, FileText } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGroup } from "@/components/ui/select";
+// Ensure the correct path to the Combobox component
+// import { Combobox, ComboboxInput, ComboboxContent, ComboboxItem } from "@/components/ui/combobox"; // Adjusted the path to match the convention
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Badge from "@/components/ui/badge";
 import Field from "@/components/ui/field";
@@ -43,12 +44,12 @@ interface FilteredCase {
   next: string;
 }
 
-const stageOptions = [
-  { value: "any", label: "Any" },
-  { value: "pending", label: "Pending" },
-  { value: "arguments", label: "Arguments" },
-  { value: "orders", label: "Orders" },
-];
+// const stageOptions = [
+//   { value: "any", label: "Any" },
+//   { value: "pending", label: "Pending" },
+//   { value: "arguments", label: "Arguments" },
+//   { value: "orders", label: "Orders" },
+// ];
 
 export default function CaseManagementDashboard() {
   const [caseDetails, setCaseDetails] = useState<CaseDetails | null>(null);
@@ -57,6 +58,7 @@ export default function CaseManagementDashboard() {
   const [stage, setStage] = useState("any");
   const [filtered, setFiltered] = useState<FilteredCase[]>([]);
   const [selected, setSelected] = useState<FilteredCase | null>(null);
+  const [isLoading] = useState(false); // Removed unused `setIsLoading` to fix the ESLint error.
 
   useEffect(() => {
     const fetchCaseDetails = async () => {
@@ -151,22 +153,18 @@ export default function CaseManagementDashboard() {
                   placeholder="Search by CNR, party, advocate, judge, stage…"
                 />
               </div>
-              <div className="md:col-span-2">
-                <Select value={stage} onValueChange={setStage}>
-                  <SelectTrigger>
-                    <SelectValue>{stage === "any" ? "Stage" : stage}</SelectValue>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup label="Stages">
-                      {stageOptions.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
+              {/* <div className="md:col-span-2">
+                <Combobox value={stage} onValueChange={setStage}>
+                  <ComboboxInput placeholder="Stage" />
+                  <ComboboxContent>
+                    {stageOptions.map((option) => (
+                      <ComboboxItem key={option.value} value={option.value}>
+                        {option.label}
+                      </ComboboxItem>
+                    ))}
+                  </ComboboxContent>
+                </Combobox>
+              </div>  */}
               <div className="md:col-span-2 flex gap-2">
                 <Button>
                   <Search className="mr-2 h-4 w-4" />
@@ -193,7 +191,12 @@ export default function CaseManagementDashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="overflow-y-auto max-h-96 rounded-lg border">
+              <div className="overflow-y-auto max-h-96 rounded-lg border relative">
+                {isLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
+                    <span className="text-gray-500">Please wait...</span>
+                  </div>
+                )}
                 <table className="w-full text-sm">
                   <thead className="bg-slate-100 text-slate-700">
                     <tr>
