@@ -75,9 +75,9 @@ const CasesPage = () => {
           <TableRow>
             <TableHead>Case ID</TableHead>
             <TableHead>Title</TableHead>
-            <TableHead>Status</TableHead>
             <TableHead>Last Updated</TableHead>
             <TableHead>Case Type</TableHead>
+            <TableHead>Current Status</TableHead>
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -86,9 +86,9 @@ const CasesPage = () => {
             <TableRow key={index}>
               <TableCell>{caseItem.id}</TableCell>
               <TableCell>{caseItem.title}</TableCell>
-              <TableCell>{caseItem.status}</TableCell>
               <TableCell>{caseItem.lastUpdated}</TableCell>
               <TableCell>{caseItem.caseType}</TableCell>
+              <TableCell>{caseItem.currentStatus}</TableCell>
               <TableCell>
                 <Dialog>
                   <DialogTrigger asChild>
@@ -110,13 +110,13 @@ const CasesPage = () => {
                         <p><strong>Status:</strong> {selectedCase.status}</p>
                         <p><strong>Last Updated:</strong> {selectedCase.lastUpdated}</p>
                         <p><strong>Case Type:</strong> {selectedCase.caseType}</p>
+                        <p><strong>Current Status:</strong> {selectedCase.currentStatus}</p>
                         <p><strong>Filing Number:</strong> {selectedCase.filingNumber}</p>
                         <p><strong>Registration Number:</strong> {selectedCase.registrationNumber}</p>
                         <p><strong>Filing Date:</strong> {selectedCase.filingDate}</p>
                         <p><strong>Registration Date:</strong> {selectedCase.registrationDate}</p>
                         <p><strong>Acts Under:</strong> {selectedCase.actsUnder}</p>
                         <p><strong>CNR Number:</strong> {selectedCase.cnrNumber}</p>
-                        <p><strong>Current Status:</strong> {selectedCase.currentStatus}</p>
                         <p><strong>Petitioner ID:</strong> {selectedCase.petitionerId}</p>
                         <p><strong>Respondent ID:</strong> {selectedCase.respondentId}</p>
                       </div>
